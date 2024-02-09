@@ -5,7 +5,7 @@ const mapScalarType: Record<string, string> = {
   String: 'z.string()',
   Int: 'z.number().int()',
   BigInt: 'z.bigint()',
-  DateTime: 'z.date()',
+  DateTime: 'z.coerce.date()',
   Float: 'z.number()',
   Decimal: 'z.number()',
   Json: 'z.json()',
@@ -56,7 +56,7 @@ export const getZodConstructor = (
   }
 
   if (!field.isRequired && field.type !== 'Json') {
-    schema += '.nullish()'
+    schema += '.nullable()'
   }
 
   return schema

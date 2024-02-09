@@ -16,8 +16,8 @@ export const DocumentModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.string(),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class DocumentDto extends createZodDto(DocumentModel) {
@@ -34,8 +34,8 @@ export const PresentationModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.string().array(),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class PresentationDto extends createZodDto(PresentationModel) {
@@ -52,8 +52,8 @@ export const SpreadsheetModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.json(),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class SpreadsheetDto extends createZodDto(SpreadsheetModel) {
@@ -77,8 +77,8 @@ export const DocumentModel = z.object({
   author: z.string(),
   contents: z.string(),
   size: z.from(imports.decimalSchema),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class DocumentDto extends createZodDto(DocumentModel) {
@@ -99,8 +99,8 @@ export const DocumentModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.string(),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 "
 `;
@@ -184,8 +184,8 @@ export const DocumentModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.string(),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class DocumentDto extends createZodDto(DocumentModel) {
@@ -241,8 +241,8 @@ export const DocumentModel = z.object({
   author: z.string(),
   contents: z.string(),
   status: z.nativeEnum(Status),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class DocumentDto extends createZodDto(DocumentModel) {
@@ -260,8 +260,8 @@ export const PresentationModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.string().array(),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class PresentationDto extends createZodDto(PresentationModel) {
@@ -292,8 +292,8 @@ export const SpreadsheetModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.json(),
-  created: z.date(),
-  updated: z.date(),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
 })
 
 export class SpreadsheetDto extends createZodDto(SpreadsheetModel) {
@@ -405,7 +405,7 @@ export interface CompletePost extends z.infer<typeof PostModel> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedPostModel: z.ZodSchema<CompletePost> = z.lazy(() => PostModel.extend({
-  author: RelatedUserModel.nullish(),
+  author: RelatedUserModel.nullable(),
 }))
 "
 `;
@@ -433,7 +433,7 @@ export interface CompleteUser extends z.infer<typeof UserModel> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedUserModel: z.ZodSchema<CompleteUser> = z.lazy(() => UserModel.extend({
-  posts: RelatedPostModel.nullish(),
+  posts: RelatedPostModel.nullable(),
 }))
 "
 `;
@@ -529,7 +529,7 @@ export interface CompleteUser extends z.infer<typeof UserModel> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedUserModel: z.ZodSchema<CompleteUser> = z.lazy(() => UserModel.extend({
-  keychain: RelatedKeychainModel.nullish(),
+  keychain: RelatedKeychainModel.nullable(),
 }))
 "
 `;
